@@ -23,14 +23,14 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			i++; 
+			i++;
 			switch (format[i])
 			{
 				case 'c':
 					printed_chars += _putchar(va_arg(list, int));
 					break;
 				case 's':
-					printed_chars += print_string(va_arg(list, char *)); 
+					printed_chars += print_string(va_arg(list, char *));
 					break;
 				default:
 					printed_chars += _putchar('%');
