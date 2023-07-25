@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			printed_chars += _putchar(format[i]);
+			printed_chars += putchar(format[i]);
 		}
 		else
 		{
@@ -27,14 +27,14 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					printed_chars += _putchar(va_arg(list, int));
+					printed_chars += putchar(va_arg(list, int));
 					break;
 				case 's':
-					printed_chars += print_string(va_arg(list, char *));
+					printed_chars += print_string(va_arg(list, int));
 					break;
 				default:
-					printed_chars += _putchar('%');
-					printed_chars += _putchar(format[i]);
+					printed_chars += putchar('%');
+					printed_chars += putchar(format[i]);
 					break;
 			}
 		}
