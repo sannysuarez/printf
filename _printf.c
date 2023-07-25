@@ -20,33 +20,11 @@ int _printf(const char *format, ...)
 		return (0);
 	for (i = 0; format && format[i]; i++)
 	{
-<<<<<<< HEAD
-		if (format[i] != '%')
-		{
-			printed_chars += putchar(format[i]);
-		}
-		else
-		{
-			i++;
-			switch (format[i])
-			{
-				case 'c':
-					printed_chars += putchar(va_arg(list, int));
-					break;
-				case 's':
-					printed_chars += print_string(va_arg(list, int));
-					break;
-				default:
-					printed_chars += putchar('%');
-					printed_chars += putchar(format[i]);
-					break;
-=======
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == '\0')
 			{	print_buf(buffer, ibuf), free(buffer), va_end(arguments);
 				return (-1);
->>>>>>> 94411da20782702f7e4d5ea9d73be556230dccc8
 			}
 			else
 			{	function = get_print_func(format, i + 1);
