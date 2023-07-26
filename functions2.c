@@ -2,7 +2,7 @@
 #define BUFF_SIZE 1024
 #define F_MINUS 1
 #define F_PLUS 2
-
+#define F_SPACE 16
 
 /****************** PRINT POINTER ******************/
 /**
@@ -69,11 +69,6 @@ int print_non_printable(va_list types, char buffer[],
 	int i = 0, offset = 0;
 	char *str = va_arg(types, char *);
 
-	UNUSED(flags);
-	UNUSED(width);
-	UNUSED(precision);
-	UNUSED(size);
-
 	if (str == NULL)
 		return (write(1, "(null)", 6));
 
@@ -110,16 +105,10 @@ int print_reverse(va_list types, char buffer[],
 	char *str;
 	int i, count = 0;
 
-	UNUSED(buffer);
-	UNUSED(flags);
-	UNUSED(width);
-	UNUSED(size);
-
 	str = va_arg(types, char *);
 
 	if (str == NULL)
 	{
-		UNUSED(precision);
 
 		str = ")Null(";
 	}
