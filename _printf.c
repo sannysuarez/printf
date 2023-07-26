@@ -1,6 +1,10 @@
 #include "main.h"
 
 void print_buffer(char buffer[], int *buff_ind);
+int get_flags(format, i);
+int get_width(format, i, list);
+int get_precision(format, i, list);
+int get_size(format, i);
 
 /**
  * _printf - Printf function
