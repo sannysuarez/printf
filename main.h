@@ -56,6 +56,7 @@ int print_percent(va_list types, char buffer[],
 /* Functions to print numbers */
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
+int print_int_alt(int value);
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
 int print_unsigned(va_list types, char buffer[],
