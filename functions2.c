@@ -6,6 +6,7 @@
 
 int is_printable(char);
 int append_hexa_code(char, char[], int);
+
 /****************** PRINT POINTER ******************/
 /**
  * print_pointer - Prints the value of a pointer variable
