@@ -1,6 +1,7 @@
 #include "main.h"
 #define BUFF_SIZE 1024
 #define F_MINUS 1
+#define F_PLUS 2
 
 
 /****************** PRINT POINTER ******************/
