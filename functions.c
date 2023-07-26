@@ -98,38 +98,58 @@ int print_percent(va_list types, char buffer[],
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_int(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
+
+
+int print_int_alt(int value)
 {
-        int i = BUFF_SIZE - 2;
-	int is_negative = 0;
-	long int n = va_arg(types, long int);
-	unsigned long int num;
+    int i = 0;
+    int is_negative = 0;
+    unsigned int num;
 
-	n = convert_size_number(n, size);
+    if (value < 0)
+    {
+        num = (unsigned int)(-value);
+        is_negative = 1;
+    }
+    else
+    {
+        num = (unsigned int)value;
+    }
 
-	if (n == 0)
-		buffer[i--] = '0';
+    char *buffer = (char *)malloc(sizeof(char) * 12); 
 
-	buffer[BUFF_SIZE - 1] = '\0';
-	num = (unsigned long int)n;
+    if (buffer == NULL)
+    {
+        return (-1); 
+    }
 
-	if (n < 0)
-	{
-		num = (unsigned long int)((-1) * n);
-		is_negative = 1;
-	}
+    if (num == 0)
+    {
+        buffer[i++] = '0';
+    }
+    else
+    {
+        while (num > 0)
+        {
+            buffer[i++] = (num % 10) + '0';
+            num /= 10;
+        }
+    }
+    if (is_negative)
+    {
+        buffer[i++] = '-';
+    }
 
-	while (num > 0)
-	{
-		buffer[i--] = (num % 10) + '0';
-		num /= 10;
-	}
+    while (i > 0)
+    {
+        putchar(buffer[--i]);
+    }
 
-	i++;
+    free(buffer);
 
-	return (num);
+    return (is_negative ? i + 1 : i);
 }
+
 
 /************************* PRINT BINARY *************************/
 /**
