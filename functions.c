@@ -98,58 +98,36 @@ int print_percent(va_list types, char buffer[],
  * @size: Size specifier
  * Return: Number of chars printed
  */
-
-
 int print_int_alt(int value)
 {
-    int i = 0;
+    int num_digits = 0;
     int is_negative = 0;
-    unsigned int num;
 
     if (value < 0)
     {
-        num = (unsigned int)(-value);
         is_negative = 1;
-    }
-    else
-    {
-        num = (unsigned int)value;
+        value = -value;
     }
 
-    char *buffer = (char *)malloc(sizeof(char) * 12); 
+    int temp = value;
+    do
+    {
+        temp /= 10;
+        num_digits++;
+    } while (temp != 0);
 
-    if (buffer == NULL)
-    {
-        return (-1); 
-    }
-
-    if (num == 0)
-    {
-        buffer[i++] = '0';
-    }
-    else
-    {
-        while (num > 0)
-        {
-            buffer[i++] = (num % 10) + '0';
-            num /= 10;
-        }
-    }
     if (is_negative)
+        putchar('-');
+
+    for (int i = 0; i < num_digits; i++)
     {
-        buffer[i++] = '-';
+        int digit = value % 10;
+        putchar(digit + '0');
+        value /= 10;
     }
 
-    while (i > 0)
-    {
-        putchar(buffer[--i]);
-    }
-
-    free(buffer);
-
-    return (is_negative ? i + 1 : i);
+    return (is_negative ? num_digits + 1 : num_digits);
 }
-
 
 /************************* PRINT BINARY *************************/
 /**
@@ -190,4 +168,3 @@ int print_binary(va_list types, char buffer[],
 	}
 	return (cunt);
 }
-
