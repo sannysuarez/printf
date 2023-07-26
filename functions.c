@@ -52,7 +52,7 @@ int print_string(va_list types, char buffer[],
 
 	if (width > length)
 	{
-		if (flags & F_MINUS)
+		if (flags & 1)
 		{
 			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)
