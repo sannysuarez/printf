@@ -22,9 +22,6 @@ int print_pointer(va_list types, char buffer[],
 	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
 
-	UNUSED(width);
-	UNUSED(size);
-
 	if (addrs == NULL)
 		return (write(1, "(nil)", 5));
 
