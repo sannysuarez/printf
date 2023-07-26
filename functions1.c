@@ -1,5 +1,6 @@
 #include "main.h"
 #define F_HASH 8
+#define BUFF_SIZE 1024
 int write_unsgnd(int is_negative, int ind,
 char buffer[],
 	int flags, int width, int precision, int size);
