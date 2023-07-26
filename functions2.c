@@ -4,6 +4,7 @@
 #define F_PLUS 2
 #define F_SPACE 16
 
+int is_printable(char);
 /****************** PRINT POINTER ******************/
 /**
  * print_pointer - Prints the value of a pointer variable
