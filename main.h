@@ -54,6 +54,7 @@ int print_string(va_list types, char buffer[],
 int print_percent(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
 int my_char(va_list types);
+int my_string(va_list type, int flags, int width, int precision);
 
 /* Functions to print numbers */
 int print_int(va_list types, char buffer[],
