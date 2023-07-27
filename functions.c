@@ -1,7 +1,7 @@
 
 #include "main.h"
 #include <stdio.h>
-int print_char(va_list types, int flags, int width, int precision, int size);
+
 /************************* PRINT CHAR *************************/
 
 /**
@@ -14,7 +14,7 @@ int print_char(va_list types, int flags, int width, int precision, int size);
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_char(va_list types, int flags, int width, int precision, int size)
+int my_char(va_list types, int flags, int width, int precision, int size)
 {
 	char c = va_arg(types, int);
 
