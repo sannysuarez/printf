@@ -56,6 +56,7 @@ int print_percent(va_list types, char buffer[],
 int my_char(va_list types);
 int my_string(va_list types, int flags, int width, int precision);
 int my_percent(void);
+int my_binary(va_list types);
 
 /* Functions to print numbers */
 int print_int(va_list types, char buffer[],
