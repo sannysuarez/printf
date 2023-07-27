@@ -31,8 +31,7 @@ int my_char(va_list types)
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_string(va_list types, char buffer[],
-	int flags, int width, int precision, int size)
+int my_string(va_list type, int flags, int width, int precision)
 {
 	int length = 0, i;
 	char *str = va_arg(types, char *);
