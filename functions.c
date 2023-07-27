@@ -1,6 +1,7 @@
 
 #include "main.h"
 #include <stdio.h>
+#include <unistd.h>
 
 /************************* PRINT CHAR *************************/
 
@@ -80,11 +81,10 @@ int my_string(va_list types, int flags, int width, int precision)
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int my_percent(write())
+int my_percent(void) 
 {
-	return (write(1, "%%", 1));
+    return write(1, "%%", 1);
 }
-
 /************************* PRINT INT *************************/
 /**
  * print_int - Print int
