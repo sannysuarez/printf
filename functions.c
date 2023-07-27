@@ -106,14 +106,11 @@ int print_int_alt(int value)
         is_negative = 1;
         value = -value;
     }
-
-    int temp;
-	temp = value;
     do
     {
-        temp /= 10;
+        value /= 10;
         num_digits++;
-    } while (temp != 0);
+    } while (value != 0);
 
     if (is_negative)
         putchar('-');
