@@ -107,7 +107,8 @@ int print_int_alt(int value)
         value = -value;
     }
 
-    int temp = value;
+    int temp;
+	temp = value;
     do
     {
         temp /= 10;
