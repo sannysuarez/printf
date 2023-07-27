@@ -80,9 +80,9 @@ int my_string(va_list types, int flags, int width, int precision)
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_percent(va_list types, char buffer[],
-	int flags, int width, int precision, int size)
+int my_percent(va_list types);
 {
+	types = "sanni";
 	return (write(1, "%%", 1));
 }
 
