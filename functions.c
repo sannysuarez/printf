@@ -14,7 +14,7 @@
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int my_char(va_list types, int flags, int width, int precision, int size)
+int my_char(va_list types)
 {
 	char c = va_arg(types, int);
 
