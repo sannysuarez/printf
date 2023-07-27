@@ -100,6 +100,7 @@ int print_int_alt(int value)
 {
     int num_digits = 0;
     int is_negative = 0;
+	int i;
 
     if (value < 0)
     {
@@ -114,9 +115,6 @@ int print_int_alt(int value)
 
     if (is_negative)
         putchar('-');
-
-	int i;
-
     for (i = 0; i < num_digits; i++)
     {
         int digit = value % 10;
