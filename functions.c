@@ -136,8 +136,7 @@ int print_int_alt(int value)
  * @size: Size specifier
  * Return: Numbers of char printed.
  */
-int print_binary(va_list types, char buffer[],
-	int flags, int width, int precision, int size)
+int my_binary(va_list types)
 {
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
