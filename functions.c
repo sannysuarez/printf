@@ -1,7 +1,7 @@
 
 #include "main.h"
 #include <stdio.h>
-
+int print_char(va_list types, int flags, int width, int precision, int size);
 /************************* PRINT CHAR *************************/
 
 /**
