@@ -82,7 +82,6 @@ int my_string(va_list types, int flags, int width, int precision)
  */
 int my_percent(va_list types);
 {
-	types = "sanni";
 	return (write(1, "%%", 1));
 }
 
