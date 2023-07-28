@@ -81,7 +81,7 @@ int my_string(va_list types, int flags, int width, int precision)
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int my_percent(void) 
+int my_percent(void)
 {
     return write(1, "%%", 1);
 }
