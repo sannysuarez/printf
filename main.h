@@ -1,4 +1,3 @@
-
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
@@ -116,7 +115,3 @@ long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
 
 #endif /* MAIN_H */
-<<<<<<< HEAD
-
-=======
->>>>>>> ba51291e08589bd144314253d5f46a1e58b4b576
