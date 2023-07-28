@@ -1,13 +1,4 @@
 #include "main.h"
-#define F_HASH 8
-#define BUFF_SIZE 1024
-int write_unsgnd(int is_negative, int ind,
-char buffer[],
-	int flags, int width, int precision, int size);
-long int convert_size_number(long int num, int size);
-long int convert_size_unsgnd(unsigned long int num, int size);
-int print_hexa(va_list types, char map_to[],
-char buffer[], int flags, char flag_ch, int width, int precision, int size);
 
 /************************* PRINT UNSIGNED NUMBER *************************/
 /**
@@ -62,6 +53,8 @@ int print_octal(va_list types, char buffer[],
 	int i = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
 	unsigned long int init_num = num;
+
+	UNUSED(width);
 
 	num = convert_size_unsgnd(num, size);
 
@@ -141,6 +134,8 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 	unsigned long int num = va_arg(types, unsigned long int);
 	unsigned long int init_num = num;
 
+	UNUSED(width);
+
 	num = convert_size_unsgnd(num, size);
 
 	if (num == 0)
@@ -164,4 +159,3 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 
 	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }
-
