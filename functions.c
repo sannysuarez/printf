@@ -1,7 +1,4 @@
-
 #include "main.h"
-#include <stdio.h>
-#include <unistd.h>
 
 /************************* PRINT CHAR *************************/
 
@@ -15,11 +12,12 @@
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int my_char(va_list types)
+int print_char(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
 	char c = va_arg(types, int);
 
-	return (c);
+	return (handle_write_char(c, buffer, flags, width, precision, size));
 }
 /************************* PRINT A STRING *************************/
 /**
@@ -32,11 +30,17 @@ int my_char(va_list types)
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int my_string(va_list types, int flags, int width, int precision)
+int print_string(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
 	int length = 0, i;
 	char *str = va_arg(types, char *);
 
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -52,7 +56,7 @@ int my_string(va_list types, int flags, int width, int precision)
 
 	if (width > length)
 	{
-		if (flags & 1)
+		if (flags & F_MINUS)
 		{
 			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)
@@ -81,10 +85,18 @@ int my_string(va_list types, int flags, int width, int precision)
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int my_percent(void)
+int print_percent(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
-    return write(1, "%%", 1);
+	UNUSED(types);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
+	return (write(1, "%%", 1));
 }
+
 /************************* PRINT INT *************************/
 /**
  * print_int - Print int
@@ -96,33 +108,37 @@ int my_percent(void)
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_int_alt(int value)
+int print_int(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
-    int num_digits = 0;
-    int is_negative = 0;
-	int i;
+	int i = BUFF_SIZE - 2;
+	int is_negative = 0;
+	long int n = va_arg(types, long int);
+	unsigned long int num;
 
-    if (value < 0)
-    {
-        is_negative = 1;
-        value = -value;
-    }
-    do
-    {
-        value /= 10;
-        num_digits++;
-    } while (value != 0);
+	n = convert_size_number(n, size);
 
-    if (is_negative)
-        putchar('-');
-    for (i = 0; i < num_digits; i++)
-    {
-        int digit = value % 10;
-        putchar(digit + '0');
-        value /= 10;
-    }
+	if (n == 0)
+		buffer[i--] = '0';
 
-    return (is_negative ? num_digits + 1 : num_digits);
+	buffer[BUFF_SIZE - 1] = '\0';
+	num = (unsigned long int)n;
+
+	if (n < 0)
+	{
+		num = (unsigned long int)((-1) * n);
+		is_negative = 1;
+	}
+
+	while (num > 0)
+	{
+		buffer[i--] = (num % 10) + '0';
+		num /= 10;
+	}
+
+	i++;
+
+	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
 /************************* PRINT BINARY *************************/
@@ -136,11 +152,18 @@ int print_int_alt(int value)
  * @size: Size specifier
  * Return: Numbers of char printed.
  */
-int my_binary(va_list types)
+int print_binary(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
 {
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
-	int cunt;
+	int count;
+
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	n = va_arg(types, unsigned int);
 	m = 2147483648; /* (2 ^ 31) */
@@ -150,7 +173,7 @@ int my_binary(va_list types)
 		m /= 2;
 		a[i] = (n / m) % 2;
 	}
-	for (i = 0, sum = 0, cunt = 0; i < 32; i++)
+	for (i = 0, sum = 0, count = 0; i < 32; i++)
 	{
 		sum += a[i];
 		if (sum || i == 31)
@@ -158,8 +181,8 @@ int my_binary(va_list types)
 			char z = '0' + a[i];
 
 			write(1, &z, 1);
-			cunt++;
+			count++;
 		}
 	}
-	return (cunt);
+	return (count);
 }
